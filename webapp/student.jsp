@@ -24,7 +24,6 @@
             margin: auto;
         }
         .list, .list td, .list th {
-            padding: 1px;
             margin: auto;
             border: 1px solid black;
             border-collapse: collapse;
@@ -50,25 +49,19 @@
                 <td><label for="email">Email:</label></td>
                 <td><input id="email" type="email" name="email"></td>
             </tr>
+            <tr>
+                <td><label for="group">Group:</label></td>
+                <td><input id="group" type="text" name="group"></td>
+            </tr>
+            <tr>
+                <td><label for="faculty">Faculty:</label></td>
+                <td><input id="faculty" type="text" name="faculty"></td>
+            </tr>
             </tbody>
         </table>
         <input type="submit" name="send" value="Send">
     </form>
 
-    <%
-        List<Student> students = (List<Student>) application.getAttribute("students");
-        if (students == null) {
-            students = new LinkedList<Student>();
-            application.setAttribute("students", students);
-        }
-        if (request.getParameter("name") != "" || request.getParameter("surname") != "") {
-            Student student = new Student();
-            student.setName(request.getParameter("name"));
-            student.setSurname(request.getParameter("surname"));
-            student.setEmail(request.getParameter("email"));
-            students.add(student);
-        }
-    %>
 
     <c:if test="${not empty students}">
         <table class="list">
@@ -76,12 +69,16 @@
                 <th>Name</th>
                 <th>Surname</th>
                 <th>Email</th>
+                <th>Group</th>
+                <th>Faculty</th>
             </tr>
             <c:forEach items="${students}" var="s">
                 <tr>
                     <td><c:out value="${s.name}" /></td>
                     <td><c:out value="${s.surname}" /></td>
                     <td><c:out value="${s.email}" /></td>
+                    <td><c:out value="${s.group}" /></td>
+                    <td><c:out value="${s.faculty}" /></td>
                 </tr>
             </c:forEach>
         </table>
