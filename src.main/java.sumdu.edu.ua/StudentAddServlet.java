@@ -21,11 +21,10 @@ public class StudentAddServlet extends HttpServlet {
         String name = request.getParameter("name");
         String surname = request.getParameter("surname");
         String email = request.getParameter("email");
+        String group = request.getParameter("group");
+        String faculty = request.getParameter("faculty");
         if (name != null && !name.isEmpty() && surname != null && !surname.isEmpty()) {
-            Student student = new Student();
-            student.setName(name);
-            student.setSurname(surname);
-            student.setEmail(email);
+            Student student = new Student(name, surname, email, group, faculty);
             students.add(student);
         }
         response.sendRedirect("student.jsp");
